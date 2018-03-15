@@ -1,0 +1,31 @@
+
+```example
+
+import pyqualys
+
+obj = pyqualys.QualysAPI(username="admin", password="admin", host="http://")
+
+service = obj.service("vulnerability")
+
+# Add asset
+request = service.add_asset(title="Linux", ip="10.0.0.1-50")
+
+# List of asset
+assets = service.list_asset()
+
+# Get asset
+asset = service.get_asset(title="Linux" | ip="10.0.0.1-50" | id=1)
+
+# Scan asset
+# First create report object
+report = Report()
+report.format = "html | plain-text"
+report.send = "user@gmail.com"
+# report.notify = "sms" | send only status and summery
+
+scan = asset.scan(report=report | format="html|plain")
+# if format is selected it returns in response
+# First need to check what size of actual
+```
+
+

@@ -6,7 +6,7 @@ obj = pyqualys.QualysAPI(username="admin", password="admin", host="https://qualy
 service = obj.service("vulnerability")
 
 # Add asset
-# request = service.add_asset(title="Linux", ip="13.255.255.255")
+# request = service.asset.add_asset(title="Linux", ip="13.255.255.255")
 # print("Response", request)
 
 # Add user
