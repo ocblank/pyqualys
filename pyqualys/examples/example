@@ -14,7 +14,7 @@ request = service.add_asset(title="Linux", ip="10.0.0.1-50")
 assets = service.list_asset()
 
 # Get asset
-asset = service.get_asset(title="Linux" | ip="10.0.0.1-50" | id=1)
+asset = service.search_asset(title="Linux", ip="10.0.0.1-50" | id=1)
 
 # Scan asset
 # First create report object

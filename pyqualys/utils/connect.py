@@ -10,7 +10,6 @@ class QualysAPI(object):
             print("Error: username or password missing.")
         elif not host:
             print("Error: host parameter is missing.")
-        # super().__init__(username=username, password=password, host=host)
         self.__session = APISession(username=username, password=password, host=host)
 
     def list_services(self):

@@ -5,12 +5,13 @@ class AssetHandler(object):
 
     def __init__(self, session, api_version, urls_map):
         self.session = session
-        self.api_version = api_version
-        self.urls_map = urls_map
+        self.asset_api_version = api_version
+        self.asset_urls_map = urls_map.asset
+        super(AssetHandler, self).__init__(session, api_version, urls_map)
 
     def add_asset(self, title, ip):
         data = {"action": "add", "title": title, "ips": ip}
-        uri = self.api_version + self.urls_map.asset
+        uri = self.asset_api_version + self.asset_urls_map
         resp = self.session.post(uri, data)
         return resp
 
@@ -20,9 +21,9 @@ class AssetHandler(object):
     def delete_asset(self):
         pass
 
-    def get_asset(self):
+    def get_assets(self):
         data = {"action": "list", "show_attributes": "ALL"}
-        uri = self.api_version + self.urls_map.asset
+        uri = self.asset_api_version + self.asset_urls_map.asset
         resp = self.session.post(uri, data)
         with open("tmp.txt", "w") as awrite:
             awrite.writelines(str(resp.text)) 

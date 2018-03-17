@@ -5,7 +5,7 @@ from requests import Session
 HEADERS = {"X-Requested-With": "python-3x/api"}
 API_V2 = ""
 
-class APISession:
+class APISession(object):
 
     def __init__(self, username, password, host):
         self.__host = host
@@ -16,13 +16,13 @@ class APISession:
     def post(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = 0 # self.__session.post(url, data=data, verify=False)
+        resp = "done" # self.__session.post(url, data=data, verify=False)
         return resp
 
     def get(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = self.__session.get(url, data=data, verify=False)
+        resp = 0 # self.__session.get(url, data=data, verify=False)
         return resp
         
     def put(self, url, data):

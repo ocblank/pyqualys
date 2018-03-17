@@ -11,15 +11,17 @@ print("Response", request)
 
 
 # Add user
-# info = {}
-# info["business_unit"] = "my Business"
-# info["first_name"] = "User1"
+info = {}
+info["business_unit"] = "my Business"
 
-# info["last_name"] = "Lastname"
-# info["phone"] = "1234567890"
-# info["email"] = "hello@qualys.com"
-# # request = service.add_user(data=info)
-# # print("Response", request)
+info["first_name"] = "Amit"
+info["last_name"] = "Ghadge"
+info["phone"] = "1234567890"
+info["email"] = "hello@qualys.com"
 
+request = service.add_user(data=info)
+service.acceptEULA = True
+
+# print("Response", request)
 # request = service.get_asset()
 # print("Response", request)
