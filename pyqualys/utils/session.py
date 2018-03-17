@@ -16,7 +16,7 @@ class APISession:
     def post(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = self.__session.post(url, data=data, verify=False)
+        resp = 0 # self.__session.post(url, data=data, verify=False)
         return resp
 
     def get(self, uri, data):

@@ -7,7 +7,6 @@ class AssetHandler(object):
         self.session = session
         self.api_version = api_version
         self.urls_map = urls_map
-        
 
     def add_asset(self, title, ip):
         data = {"action": "add", "title": title, "ips": ip}
