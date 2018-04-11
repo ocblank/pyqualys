@@ -1,5 +1,5 @@
 
-
+from .scan import ScanAsset
 
 class AssetHandler(object):
 
@@ -7,13 +7,18 @@ class AssetHandler(object):
         self.session = session
         self.asset_api_version = api_version
         self.asset_urls_map = urls_map.asset
-        super(AssetHandler, self).__init__(session, api_version, urls_map)
+        super(AssetHandler, self).__init__(session=session,
+                                            api_version=api_version,
+                                            urls_map=urls_map)
 
-    def add_asset(self, title, ip):
+    def add_asset(self, *args, **kwargs):
+        title = kwargs.get("title")
+        ip = kwargs.get("ip")
         data = {"action": "add", "title": title, "ips": ip}
         uri = self.asset_api_version + self.asset_urls_map
         resp = self.session.post(uri, data)
-        return resp
+        x = ScanAsset(id=123)
+        return x
 
     def edit_asset(self, **parameter):
         pass
@@ -21,7 +26,7 @@ class AssetHandler(object):
     def delete_asset(self):
         pass
 
-    def get_assets(self):
+    def get_asset(self):
         data = {"action": "list", "show_attributes": "ALL"}
         uri = self.asset_api_version + self.asset_urls_map.asset
         resp = self.session.post(uri, data)
