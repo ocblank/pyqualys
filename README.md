@@ -1,7 +1,7 @@
 # pyqualys
 
 Qualys API
-----------
+-----------
 
 ```
 $ python3 main.py
