@@ -1,4 +1,4 @@
-# pyqualys
+# pyqualys (Work in progress)
 
 Qualys API
 -----------
