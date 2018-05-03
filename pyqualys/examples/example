@@ -10,11 +10,18 @@ service = obj.service("vulnerability")
 # Add asset
 asset = service.add_asset(title="Linux", ip="10.0.0.1-50")
 
-# List of asset
-assets = service.get_asset()
+# Update asset
+asset = service.update_asset(asset_id=102, ip="10.0.0.1-100")
+
+# Delete asset
+asset = service.delete_asset(asset_id=102)
+
+# List of assets
+assets = service.list_assets()
 
 # Get asset
-asset = service.search_asset(title="Linux", ip="10.0.0.1-50" | id=1)
+asset = service.search_asset(title="Linux" | ip="10.0.0.1-50")
+
 
 # Scan asset
 # First create report object

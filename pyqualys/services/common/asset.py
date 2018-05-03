@@ -20,13 +20,13 @@ class AssetHandler(object):
         x = ScanAsset(id=123)
         return x
 
-    def edit_asset(self, **parameter):
+    def update_asset(self, **parameter):
         pass
 
     def delete_asset(self):
         pass
 
-    def get_asset(self):
+    def list_assets(self):
         data = {"action": "list", "show_attributes": "ALL"}
         uri = self.asset_api_version + self.asset_urls_map.asset
         resp = self.session.post(uri, data)
