@@ -16,8 +16,8 @@ class APISession(object):
     def post(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = "done" # self.__session.post(url, data=data, verify=False)
-        return {"id": 123}
+        resp = self.__session.post(url, data=data, verify=False)
+        return resp
 
     def get(self, uri, data):
         url = self.__host + uri
@@ -28,13 +28,13 @@ class APISession(object):
     def put(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = "done" # self.__session.put(url, data=data, verify=False)
-        return {"id": 123}
+        resp = self.__session.put(url, data=data, verify=False)
+        return resp # {"id": 123}
 
     def delete(self, uri, data):
         url = self.__host + uri
         print(url, data)
-        resp = 0 # self.__session.delete(url, data=data, verify=False)
+        resp = self.__session.delete(url, data=data, verify=False)
         return resp
 
 

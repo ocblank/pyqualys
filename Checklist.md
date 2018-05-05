@@ -1,8 +1,8 @@
 ### Asset
 
-- [ ] Add asset
-- [ ] Update asset
-- [ ] Delete asset
+- [x] Add asset
+- [x] Update asset
+- [x] Delete asset
 - [ ] List of assets
 - [ ] Search asset
 
