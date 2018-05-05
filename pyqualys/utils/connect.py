@@ -2,10 +2,11 @@
 import importlib
 from .session import APISession
 
+SERVICES = {"vulnerability": "VulnerabilityService"}
+
 class QualysAPI(object):
 
     def __init__(self, **kwargs):
-        self.services = ["vulnerability"]
         username = kwargs.get("username")
         password = kwargs.get("password")
         host = kwargs.get("host")
@@ -16,13 +17,13 @@ class QualysAPI(object):
         self.__session = APISession(**kwargs)
 
     def list_services(self):
-        return self.services
+        return SERVICES
 
     def service(self, service_name):
-        if service_name not in self.services:
+        if service_name not in SERVICES:
             print("{} Service is not available.".format(service_name))
 
         s = "pyqualys.services.{0}".format(service_name)
-        Service = getattr(importlib.import_module(s), "VulnerabilityService")
+        Service = getattr(importlib.import_module(s), SERVICES[service_name])
         return Service(self.__session)
 
