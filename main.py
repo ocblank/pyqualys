@@ -7,26 +7,33 @@ service = obj.service("vulnerability")
 
 
 # Add asset
-asset = service.add_asset(title="myLinux", ips="16.0.0.1")
-print("Add asset Response", asset)
+# asset = service.add_asset(title="myLinux", ips="10.10.10.1")
+# print("Add asset Response", asset)
 
 # Update asset
-# asset_ = asset.update_asset(ip="10.0.0.1-100")
-asset = service.update_asset(asset_id=11773, set_title="myOS", set_ips="16.0.0.1")
-print("Update asset Response", asset)
+# asset = service.update_asset(asset_id=306065, title="myOS", ips="10.10.10.1")
+# print("Update asset Response", asset)
 
 
 # # Delete asset
-asset = service.delete_asset(asset_id=11773)
-print("Delete asset Response", asset)
+# asset = service.delete_asset(asset_id=306065)
+# print("Delete asset Response", asset)
 
 # # List of assets
 # assets = service.list_assets()
 # print("List asset Response", assets)
 
 # # Get asset
-# asset = service.search_asset(title="Linux", ip="10.0.0.1-50")
+# asset = service.search_asset(asset_id=306065)
 # print("Get asset Response", asset)
+
+# List of Scan
+# scan = asset.scan_list()
+# print(scan)
+
+# Start Scan
+# scan = asset.start_scan(scan_title="MyScan", ip="10.10.10.1", iscanner_name="mytest", option_title="Initial Options")
+
 
 # # Add user
 # info = {}
