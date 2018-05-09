@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import logging
 import importlib
 from .session import APISession
 
-SERVICES = {"vulnerability": "VulnerabilityService"}
+logger = logging.getLogger(__name__)
+SERVICES = ["vulnerability"]
 
 class QualysAPI(object):
 
@@ -11,9 +13,11 @@ class QualysAPI(object):
         password = kwargs.get("password")
         host = kwargs.get("host")
         if not username or not password:
-            print("Error: username or password missing.")
+            logger.error("Error: username or password missing.")
+            return
         elif not host:
-            print("Error: host parameter is missing.")
+            logger.error("Error: host parameter is missing.")
+            return
         self.__session = APISession(**kwargs)
 
     def list_services(self):
@@ -21,9 +25,9 @@ class QualysAPI(object):
 
     def service(self, service_name):
         if service_name not in SERVICES:
-            print("{} Service is not available.".format(service_name))
-
+            logger.error("{} Service is not available.".format(service_name))
+            return
         s = "pyqualys.services.{0}".format(service_name)
-        Service = getattr(importlib.import_module(s), SERVICES[service_name])
+        Service = getattr(importlib.import_module(s), service_name.title()+"Service")
         return Service(self.__session)
 
