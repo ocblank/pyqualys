@@ -6,6 +6,7 @@ from .session import APISession
 logger = logging.getLogger(__name__)
 SERVICES = ["vulnerability"]
 
+
 class QualysAPI(object):
 
     def __init__(self, **kwargs):
@@ -28,6 +29,6 @@ class QualysAPI(object):
             logger.error("{} Service is not available.".format(service_name))
             return
         s = "pyqualys.services.{0}".format(service_name)
-        Service = getattr(importlib.import_module(s), service_name.title()+"Service")
+        Service = getattr(importlib.import_module(s),
+                          service_name.title()+"Service")
         return Service(self.__session)
-

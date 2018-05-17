@@ -38,5 +38,3 @@ class APISession(object):
         logger.debug(url, data)
         resp = self.__session.delete(url, data=data, verify=False)
         return resp
-
-

@@ -15,7 +15,7 @@ class AssetHandler(object):
         super(AssetHandler, self).__init__(session=session,
                                            api_version=api_version,
                                            urls_map=urls_map)
-    
+
     @scanner
     def get_obj(self, **data):
         uri = self.asset_api_version + self.asset_urls_map
@@ -47,7 +47,7 @@ class AssetHandler(object):
                 data["set_"+key] = kwargs.pop(key)
             else:
                 data[key] = kwargs.pop(key)
-        
+
         data["id"] = asset_id
         data["action"] = "edit"
 

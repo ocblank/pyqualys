@@ -1,10 +1,14 @@
-
+# -*- coding: utf-8 -*-
+import re
 import pyqualys
 
-obj = pyqualys.QualysAPI(username="admin", password="admin", host="https://qualys.com/")
+obj = pyqualys.QualysAPI(username="admin",
+                         password="admin",
+                         host="https://qualys.com/")
 
 service = obj.service("vulnerability")
 
+# service.format = "json"
 
 # Add asset
 # asset = service.add_asset(title="myLinux", ips="10.10.10.1")
@@ -24,15 +28,28 @@ service = obj.service("vulnerability")
 # print("List asset Response", assets)
 
 # # Get asset
-# asset = service.search_asset(asset_id=306065)
-# print("Get asset Response", asset)
+asset = service.search_asset(ids=306065)
+print("Get asset Response", asset)
 
 # List of Scan
 # scan = asset.scan_list()
 # print(scan)
 
 # Start Scan
-# scan = asset.start_scan(scan_title="MyScan", ip="10.10.10.1", iscanner_name="mytest", option_title="Initial Options")
+# scan = asset.start_scan(scan_title="MyScan1", ip="10.10.10.1",
+#                         iscanner_name="mytest",
+#                         option_title="Initial Options")
+# print("Start Scan", scan.text)
+# Get Scan Report
+
+# Manage Scan
+#
+
+
+# Get report the scanner
+# report = asset.get_scan_report(echo_request=1,
+#                                scan_ref="scan/1525944287.01369",
+#                                output_format="json")
 
 
 # # Add user

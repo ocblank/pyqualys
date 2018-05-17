@@ -8,7 +8,7 @@ class ScanAsset(object):
         self.endpoint = kwargs.pop('endpoint')
         self.uri = kwargs.pop('uri')
         self.session = kwargs.pop('session')
-            
+
     def scan_list(self, **kwargs):
         data = kwargs
         data["action"] = "list"
@@ -37,8 +37,7 @@ def scanner(func):
     def inner(*args, **kwargs):
         result = func(*args, **kwargs)
         info = result["info"]
-        # obj = result["obj"]
-        print(info)
+        logger.debug(info)
         return ScanAsset(endpoint=info["endpoint"], uri=info["uri"],
                          session=info["session"])
     return inner
