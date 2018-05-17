@@ -3,7 +3,7 @@ class UserHandler:
 
     def __init__(self, session, api_version, urls_map):
         self.session = session
-        self.user_api_version = "api/1.0/" # api_version
+        self.user_api_version = "api/1.0/"
         self.user_urls_map = urls_map.user
         self.acceptEULA = False
         super(UserHandler, self).__init__()
@@ -23,7 +23,7 @@ class UserHandler:
         :param parameter: contain the user information.
         :type parameter: dict
 
-        :format
+        :parameter
         {
             'first_name': 'fname',
             'last_name': 'lname',
@@ -42,7 +42,7 @@ class UserHandler:
             'send_email': 0,
 
             'user_role': 'role',
-            'business_unit': 'bu',
+            'business_unit': 'BU',
             'asset_group': 'grp1, grp2',
             'ui_interface_style': 'red',
 
@@ -62,7 +62,6 @@ class UserHandler:
         :param parameter: contain the updated user filed.
         :type parameter: dict
         """
-
 
     def delete_user(self, username, force=True):
         """

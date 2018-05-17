@@ -6,6 +6,7 @@ from requests import Session
 logger = logging.getLogger(__name__)
 HEADERS = {"X-Requested-With": "pyqualys/python-3x"}
 
+
 class APISession(object):
 
     def __init__(self, username, password, host):
@@ -25,7 +26,7 @@ class APISession(object):
         logger.debug(url, data)
         resp = self.__session.get(url, data=data, verify=False)
         return resp
-        
+
     def put(self, uri, data):
         url = self.__host + uri
         logger.debug(url, data)

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
-from .scan import scanner
+from .scan import scanner, ScanAsset
 
 logger = logging.getLogger(__name__)
+
 
 class AssetHandler(object):
 
@@ -10,17 +11,19 @@ class AssetHandler(object):
         self.session = session
         self.asset_api_version = api_version
         self.asset_urls_map = urls_map.asset
-        self.scanner_urls_map = urls_map.scan
+        self.urls_map = urls_map
         super(AssetHandler, self).__init__(session=session,
-                                            api_version=api_version,
-                                            urls_map=urls_map)
+                                           api_version=api_version,
+                                           urls_map=urls_map)
     
     @scanner
     def get_obj(self, **data):
         uri = self.asset_api_version + self.asset_urls_map
         resp = self.session.post(uri, data)
         logger.debug(resp.text)
-        return {'response': resp, "info": {"endpoint": uri, "session":self.session}}
+        return {'response': resp, "info": {"endpoint": self.asset_api_version,
+                                           "uri": self.urls_map,
+                                           "session": self.session}}
 
     def add_asset(self, **kwargs):
         if "title" not in kwargs and "ips" not in kwargs:
@@ -62,7 +65,6 @@ class AssetHandler(object):
 
         return self.get_obj(**data)
 
-    
     def search_asset(self, **kwargs):
         logger.debug("Search the asset: {}".format(kwargs))
         if "asset_id" not in kwargs and "ids" not in kwargs:
