@@ -22,6 +22,7 @@ class QualysAPI(object):
         self.__session = APISession(**kwargs)
 
     def list_services(self):
+        # return "Services:\n\t"+"\n\t".join(SERVICES)
         return SERVICES
 
     def service(self, service_name):
