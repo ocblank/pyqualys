@@ -1,13 +1,23 @@
 # pyqualys (Work in progress)
 
-Qualys API
+Qualys API Example
 -----------
 
 ```
 $ python3 main.py
 ```
 
-OR 
+
+Run Test cases
+----------
+
+All test cases
 ```
-$ py -3 main.py
+$ python3 -m unittest discover pyqualys/tests
 ```
+
+Single test cases
+```
+$ python3 -m unittest pyqualys.tests.test_user.TestUser.test_add_user
+```
+

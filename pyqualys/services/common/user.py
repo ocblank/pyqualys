@@ -1,12 +1,25 @@
+# -*- coding: utf-8 -*-
+import logging
+from ...utils import util
+logger = logging.getLogger(__name__)
+
 
 class UserHandler:
 
     def __init__(self, session, api_version, urls_map):
         self.session = session
-        self.user_api_version = "api/1.0/"
-        self.user_urls_map = urls_map.user
+        self.user_urls_map = urls_map
         self.acceptEULA = False
         super(UserHandler, self).__init__()
+
+    def __get_obj(self, parameter={}, user_list=False):
+
+        if user_list:
+            uri = self.user_urls_map.user_list
+        else:
+            uri = self.user_urls_map.user
+        resp = self.session.post(uri, parameter)
+        return util.decode_xml(resp.text)
 
     # @property
     # def verifyEULA(self):
@@ -15,6 +28,14 @@ class UserHandler:
     # @verifyEULA.setter
     # def verifyEULA(self, user):
     #     print(user)
+
+    def activate_user(self, username):
+        parameter = {"action": "activate", "login": username}
+        return self.__get_obj(**parameter)
+
+    def deactivate_user(self, username):
+        parameter = {"action": "deactivate", "login": username}
+        return self.__get_obj(**parameter)
 
     def add_user(self, **parameter):
         """
@@ -28,8 +49,8 @@ class UserHandler:
             'first_name': 'fname',
             'last_name': 'lname',
             'title': 'My Title',
-            'phone': 012345689,
-            'fax': 022,
+            'phone': '012345689',
+            'fax': '022',
             'email': 'fname@company.com',
             'address1': 'Panchshil Tech Park',
             'address2': 'Shivaji Nagar',
@@ -41,19 +62,18 @@ class UserHandler:
 
             'send_email': 0,
 
-            'user_role': 'role',
-            'business_unit': 'BU',
+            'user_role': 'scanner',
+            'business_unit': 'aa',
             'asset_group': 'grp1, grp2',
-            'ui_interface_style': 'red',
-
-
-            'time_zone_code': 2
+            'ui_interface_style': 'navy_blue',
         }
         """
+        acceptEULA = False
         parameter["action"] = "add"
-        uri = self.user_api_version + self.user_urls_map
-        resp = self.session.post(uri, parameter)
-        return resp
+        response = self.__get_obj(parameter)
+        if acceptEULA:
+            logger.info(response)
+        return response
 
     def edit_user(self, **parameter):
         """
@@ -62,6 +82,27 @@ class UserHandler:
         :param parameter: contain the updated user filed.
         :type parameter: dict
         """
+        parameter["action"] = "edit"
+        if "login" not in parameter:
+            logger.error("Please pass login id.")
+            return
+        return self.__get_obj(**parameter)
+
+    def get_users(self):
+        """
+        Return list of users.
+        """
+        return self.__get_obj(user_list=True)
+
+    def search_user(self, query):
+        """
+        Find the user by the help of given query.
+
+        :param query: multiple search terms in one string.
+                    username=qualys* AND ip=10.*
+        :param query: string
+        """
+        pass
 
     def delete_user(self, username, force=True):
         """
@@ -73,18 +114,3 @@ class UserHandler:
         :param force: clean all user informations.
         :type force: bool
         """
-
-    def get_users(self):
-        """
-        Return list of users.
-        """
-
-    def search_user(self, query):
-        """
-        Find the user by the help of given query.
-
-        :param query: multiple search terms in one string.
-                    username=qualys* AND ip=10.*
-        :param query: string
-        """
-        pass
