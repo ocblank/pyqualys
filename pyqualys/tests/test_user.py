@@ -8,8 +8,8 @@ class TestUser(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.__instance = pyqualys.QualysAPI(username="abc",
-                                           password="abc@1",
-                                           host="https://qualys.com/")
+                                            password="abc@1",
+                                            host="https://qualys.com/")
         cls.__service = cls.__instance.service("vulnerability")
 
     def test_add_user(self):
@@ -55,21 +55,16 @@ class TestUser(unittest.TestCase):
             'zip_code': 411022,
             'external_id': 101
         }
-        expected_output = r"quays_ag1 user has been successfully updated."
+        expected_output = r"{} user has been successfully updated."
         response = self.__service.edit_user(**edit_user)
         self.assertRegex(response['data']['RETURN']['MESSAGE'],
-                         expected_output)
+                         expected_output.format(username))
 
     def test_get_users(self):
-        expected_output = ""
+        expected_output = 0
         response = self.__service.get_users()
-        print(response)
-        self.assertRegex(response['data']['RETURN']['MESSAGE'],
-                         expected_output)
-
-    def test_search_user(self):
-        expected_output = ""
-        pass
+        total_users = len(response['data']['USER_LIST'])
+        self.assertNotEqual(total_users, expected_output)
 
     def test_delete_user(self):
         expected_output = ""
