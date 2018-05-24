@@ -15,10 +15,10 @@ class APISession(object):
         self.__session.auth = (username, password)
         self.__session.headers.update(HEADERS)
 
-    def post(self, uri, data):
+    def post(self, uri, data, headers={}):
         url = self.__host + uri
         logger.debug("{}-{}".format(url, data))
-        resp = self.__session.post(url, data=data, verify=False)
+        resp = self.__session.post(url, data=data, headers=headers, verify=False)
         return resp
 
     def get(self, uri, data):

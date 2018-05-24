@@ -4,7 +4,7 @@ import importlib
 from .session import APISession
 
 logger = logging.getLogger(__name__)
-SERVICES = ["vulnerability"]
+SERVICES = ["vulnerability", "assetview"]
 
 
 class QualysAPI(object):
