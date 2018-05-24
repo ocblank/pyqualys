@@ -12,13 +12,15 @@ class UserHandler:
         self.acceptEULA = False
         super(UserHandler, self).__init__()
 
-    def __get_obj(self, parameter={}, user_list=False):
+    def __get_obj(self, parameter={}, user_list=False, format="json"):
 
         if user_list:
             uri = self.user_urls_map.user_list
         else:
             uri = self.user_urls_map.user
         resp = self.session.post(uri, parameter)
+        if format == "xml":
+            return resp.text
         return util.decode_xml(resp.text)
 
     # @property
@@ -31,11 +33,11 @@ class UserHandler:
 
     def activate_user(self, username):
         parameter = {"action": "activate", "login": username}
-        return self.__get_obj(**parameter)
+        return self.__get_obj(parameter)
 
     def deactivate_user(self, username):
         parameter = {"action": "deactivate", "login": username}
-        return self.__get_obj(**parameter)
+        return self.__get_obj(parameter)
 
     def add_user(self, **parameter):
         """
@@ -92,7 +94,7 @@ class UserHandler:
         """
         Return list of users.
         """
-        return self.__get_obj(user_list=True)
+        return self.__get_obj(user_list=True, format="xml")
 
     def search_user(self, query):
         """
