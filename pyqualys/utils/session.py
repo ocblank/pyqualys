@@ -17,24 +17,24 @@ class APISession(object):
 
     def post(self, uri, data):
         url = self.__host + uri
-        logger.debug(url, data)
+        logger.debug("{}-{}".format(url, data))
         resp = self.__session.post(url, data=data, verify=False)
         return resp
 
     def get(self, uri, data):
         url = self.__host + uri
-        logger.debug(url, data)
+        logger.debug("{}-{}".format(url, data))
         resp = self.__session.get(url, data=data, verify=False)
         return resp
 
     def put(self, uri, data):
         url = self.__host + uri
-        logger.debug(url, data)
+        logger.debug("{}-{}".format(url, data))
         resp = self.__session.put(url, data=data, verify=False)
         return resp
 
     def delete(self, uri, data):
         url = self.__host + uri
-        logger.debug(url, data)
+        logger.debug("{}-{}".format(url, data))
         resp = self.__session.delete(url, data=data, verify=False)
         return resp
