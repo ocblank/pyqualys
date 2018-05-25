@@ -1,7 +1,9 @@
 # pyqualys
 
 
-pyqualys is simple, easy Python api client library for Qualys users. Currently this is in working process, but there are few features are work.
+pyqualys is simple, easy python client library for Qualys users.
+
+Currently this is in working progress, but there are few features are work (Check TODO).
 
 
 Example
