@@ -5,6 +5,7 @@
 - [x] Delete asset
 - [x] List of assets
 - [x] Search asset
+- [x] Add asset IP
 
 ### Scanner
 
