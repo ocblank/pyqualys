@@ -1,19 +1,36 @@
 # -*- coding: utf-8 -*-
-def add_asset():
-    pass
+import re
+import pyqualys
+
+obj = pyqualys.QualysAPI(username="admin",
+                         password="admin",
+                         host="https://qualys.com/")
+
+service = obj.service("vulnerability")
 
 
-def update_asset():
-    pass
+# Add asset
+asset = service.add_asset(title="myLinux", ips="10.10.10.1")
+print("Add asset Response", asset)
+response = asset.response['data']['RESPONSE']
+asset_id = response['ITEM_LIST']['ITEM']['VALUE']
 
 
-def delete_asset():
-    pass
+# # Update asset
+asset = service.update_asset(asset_id=asset_id, title="myOS", ips="10.10.10.1")
+print("Update asset Response", asset)
 
 
-def list_assets():
-    pass
+# # List of assets
+assets = service.list_assets()
+print("List asset Response", assets)
 
 
-def search_asset():
-    pass
+# # Get asset
+asset = service.search_asset(ids=asset_id)
+print("Get asset Response", asset)
+
+
+# # Delete asset
+asset = service.delete_asset(asset_id=asset_id)
+print("Delete asset Response", asset)
