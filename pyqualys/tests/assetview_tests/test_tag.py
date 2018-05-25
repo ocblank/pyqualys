@@ -8,9 +8,10 @@ from pyqualys.utils import util
 class TestTag(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.__instance = pyqualys.QualysAPI(username="admin",
-                                            password="admin",
-                                            host="http://qualys.com")
+
+        cls.__instance = pyqualys.QualysAPI(username="user",
+                                            password="pass",
+                                            host="https://qualys.com/")
         cls.__service = cls.__instance.service("assetview")
         cls.__service.FORMAT = "json"
         TestTag.tag_id = None
@@ -20,12 +21,20 @@ class TestTag(unittest.TestCase):
                 <ServiceRequest>
                     <data>
                         <Tag>
-                        <name>API Test Tag1</name>
-                        <ruleType>GROOVY</ruleType>
-        <ruleText>if (!asset.isHostAsset()) return false;
+
+                            <name>API Test Tag</name>
+                            <ruleType>GROOVY</ruleType>
+                            <ruleText>if (!asset.isHostAsset()) return false;
         return asset.getOperatingSystem().contains("Windows XP Service Pack")
-        </ruleText>
-                        <color>#008000</color>
+                            </ruleText>
+                            <color>#008000</color>
+                            <children>
+                                <set>
+                                    <TagSimple>
+                                        <name>One</name>
+                                    </TagSimple>
+                                </set>
+                            </children>
                         </Tag>
                     </data>
                 </ServiceRequest>"""
