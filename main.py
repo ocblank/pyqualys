@@ -8,11 +8,10 @@ obj = pyqualys.QualysAPI(username="admin",
 
 service = obj.service("vulnerability")
 
-# service.format = "json"
-
+service.FORMAT = "xml"
 # Add asset
-# asset = service.add_asset(title="myLinux", ips="10.10.10.1")
-# print("Add asset Response", asset)
+asset = service.add_asset(title="myOS", ips="10.10.10.1")
+print("Add asset Response", asset.response)
 
 # Update asset
 # asset = service.update_asset(asset_id=306065, title="myOS", ips="10.10.10.1")
@@ -28,8 +27,8 @@ service = obj.service("vulnerability")
 # print("List asset Response", assets)
 
 # # Get asset
-asset = service.search_asset(ids=306065)
-print("Get asset Response", asset)
+# asset = service.search_asset(ids=306065)
+# print("Get asset Response", asset)
 
 # List of Scan
 # scan = asset.scan_list()
