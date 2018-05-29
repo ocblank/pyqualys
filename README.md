@@ -18,6 +18,9 @@ qualys = pyqualys.QualysAPI(username="admin",
                          host="https://qualys.com/")
 
 service = qualys.service("vulnerability")
+
+# Get response in xml format, default is json
+service.FORMAT = "xml"
 asset = service.add_asset(title="myLinux", ips="10.10.10.1")
 print("Response", asset)
 ```
