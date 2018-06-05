@@ -5,6 +5,14 @@ pyqualys is simple, easy python client library for Qualys users.
 
 Currently this is in working progress, but there are few features are work (Check TODO).
 
+Install
+-----------
+```
+$ git clone https://github.com/Amitgb14/pyqualys.git
+$ cd pyqualys
+$ python setup.py install
+```
+
 
 Example
 -----------
