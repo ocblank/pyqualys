@@ -2,21 +2,23 @@
 import re
 import pyqualys
 
-obj = pyqualys.QualysAPI(username="admin",
-                         password="admin",
+obj = pyqualys.QualysAPI(username="admin", password="admin@1",
                          host="https://qualys.com/")
 
-service = obj.service("vulnerability")
+# service = obj.service("vulnerability")
+# print(id(service))
+service = obj.service("assetview")
 
-service.FORMAT = "xml"
+# service.create_tag(parameter)
+# service.FORMAT = "xml"
+
 # Add asset
-asset = service.add_asset(title="myOS", ips="10.10.10.1")
-print("Add asset Response", asset.response)
+# asset = service.add_asset(title="myLinux01", ips="10.10.10.11")
+# print("Add asset Response", asset)
 
 # Update asset
 # asset = service.update_asset(asset_id=306065, title="myOS", ips="10.10.10.1")
 # print("Update asset Response", asset)
-
 
 # # Delete asset
 # asset = service.delete_asset(asset_id=306065)
@@ -25,31 +27,27 @@ print("Add asset Response", asset.response)
 # # List of assets
 # assets = service.list_assets()
 # print("List asset Response", assets)
-
 # # Get asset
-# asset = service.search_asset(ids=306065)
-# print("Get asset Response", asset)
+
+# asset = service.search_asset(ids=311275)
+# print("Get asset Response", asset.response['data']['RESPONSE'])
+
 
 # List of Scan
 # scan = asset.scan_list()
 # print(scan)
 
 # Start Scan
-# scan = asset.start_scan(scan_title="MyScan1", ip="10.10.10.1",
+# scan = asset.start_scan(scan_title="MyLinuxScanTest", ip="10.10.10.10",
 #                         iscanner_name="mytest",
 #                         option_title="Initial Options")
 # print("Start Scan", scan.text)
 # Get Scan Report
-
-# Manage Scan
 #
-
-
-# Get report the scanner
+# # Get report the scanner
 # report = asset.get_scan_report(echo_request=1,
 #                                scan_ref="scan/1525944287.01369",
 #                                output_format="json")
-
 
 # # Add user
 # info = {}
