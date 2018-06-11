@@ -11,6 +11,10 @@ Install
 $ git clone https://github.com/Amitgb14/pyqualys.git
 $ cd pyqualys
 $ python setup.py install
+
+or
+
+$ pip install pyqualys
 ```
 
 
