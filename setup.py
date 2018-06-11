@@ -19,5 +19,6 @@ setup(name='pyqualys',
           'Programming Language :: Python :: 3.6',
       ],
       install_requires=['lxml>=4.1.1',
-                        'requests>=2.18.1']
+                        'requests>=2.18.1',
+                        'simplejson>=3.15.0']
       )
