@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pyqualys
 
-qualys = pyqualys.QualysAPI(username="quays_as1",
-                            password="qatemp",
-                            host="https://qualysapi.p04.eng.in03.qualys.com/")
+qualys = pyqualys.QualysAPI(username="abc",
+                            password="abc",
+                            host="https://qualys.com/")
 
 service = qualys.service("vulnerability")
 # Get response in json format, default is xml
