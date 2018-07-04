@@ -94,5 +94,5 @@ class Tags(object):
         :type parameter: dict
         """
 
-        uri = "search/am/asset"
+        uri = "count/am/asset"
         return self.__get_obj(parameter=parameter, uri=uri)
