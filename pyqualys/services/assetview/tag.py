@@ -85,3 +85,14 @@ class Tags(object):
 
         uri = "delete/am/tag/%s" % (tag_id)
         return self.__get_obj(uri=uri)
+
+    def tag_asset_count(self, parameter):
+        """
+        Count the asset of perticular tag.
+
+        :param parameter: contain the tag details.
+        :type parameter: dict
+        """
+
+        uri = "count/am/asset"
+        return self.__get_obj(parameter=parameter, uri=uri)
