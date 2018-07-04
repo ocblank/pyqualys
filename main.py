@@ -10,7 +10,8 @@ service = qualys.service("vulnerability")
 service.FORMAT = "json"
 
 # Start Scan
-scan = service.scanner.start_scan(scan_title="MyLinuxScanTest", ip="10.114.26.122",
+scan = service.scanner.start_scan(scan_title="MyLinuxScanTest",
+                                  ip="10.114.26.122",
                                   iscanner_name="AGScanner",
                                   option_title="Initial Options")
 print("Start Scan", scan.text)

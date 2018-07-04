@@ -46,7 +46,8 @@ service = obj.service("assetview")
 # OR
 
 # Start Scan
-# scan = service.scanner.start_scan(scan_title="MyLinuxScanTest", ip="10.114.26.122",
+# scan = service.scanner.start_scan(scan_title="MyLinuxScanTest",
+#                                   ip="10.114.26.122",
 #                                   iscanner_name="AGScan",
 #                                   option_title="Initial Options")
 
