@@ -11,7 +11,9 @@ class Tags(object):
         self.api_version = api_version
         self.tag_urls_map = urls_map.tag
         self.headers = {"Content-Type": "application/xml"}
-        super(Tags, self).__init__()
+        super(Tags, self).__init__(session=session,
+                                   api_version=api_version,
+                                   urls_map=urls_map)
 
     def __get_obj(self, parameter="", uri=""):
         uri = self.tag_urls_map + self.api_version + uri
@@ -75,16 +77,27 @@ class Tags(object):
         uri = "count/am/tag"
         return self.__get_obj(parameter=parameter, uri=uri)
 
-    def delete_tag(self, tag_id):
+    def get_assets(self, parameter):
         """
-        Delete the tag.
+        Get the attached assets.
 
         :param parameter: contain the tag details.
         :type parameter: dict
         """
 
-        uri = "delete/am/tag/%s" % (tag_id)
-        return self.__get_obj(uri=uri)
+        uri = "search/am/asset"
+        return self.__get_obj(parameter=parameter, uri=uri)
+
+    def search_host_asset(self, parameter):
+        """
+        Get the attached assets.
+
+        :param parameter: contain the tag details.
+        :type parameter: dict
+        """
+
+        uri = "search/am/hostasset"
+        return self.__get_obj(parameter=parameter, uri=uri)
 
     def tag_asset_count(self, parameter):
         """
@@ -96,3 +109,14 @@ class Tags(object):
 
         uri = "count/am/asset"
         return self.__get_obj(parameter=parameter, uri=uri)
+
+    def delete_tag(self, tag_id):
+        """
+        Delete the tag.
+
+        :param parameter: contain the tag details.
+        :type parameter: dict
+        """
+
+        uri = "delete/am/tag/%s" % (tag_id)
+        return self.__get_obj(uri=uri)

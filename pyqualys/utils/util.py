@@ -1,36 +1,40 @@
 # -*- coding: utf-8 -*-
-
-import simplejson as json
 import lxml
 import logging
-from lxml import objectify
+from collections import defaultdict
+from xml.etree import cElementTree as ET
 
 logger = logging.getLogger(__name__)
 
 
-class objectJSONEncoder(json.JSONEncoder):
-    """A specialized JSON encoder that can handle simple lxml objectify types
-    """
-
-    def default(self, o):
-        if isinstance(o, lxml.objectify.IntElement):
-            return int(o)
-        if isinstance(o, lxml.objectify.NumberElement) or \
-           isinstance(o, lxml.objectify.FloatElement):
-            return float(o)
-        if isinstance(o, lxml.objectify.ObjectifiedDataElement):
-            return str(o)
-        if hasattr(o, '__dict__'):
-            return o.__dict__
-        return json.JSONEncoder.default(self, o)
+def etree_to_dict(tree):
+    new_dict = {tree.tag: {} if tree.attrib else None}
+    children = list(tree)
+    if children:
+        dd = defaultdict(list)
+        for dc in map(etree_to_dict, children):
+            for k, v in dc.items():
+                dd[k].append(v)
+        new_dict = {tree.tag: {k:v[0] if len(v) == 1 else v for k, v in dd.items()}}
+    if tree.attrib:
+        new_dict[tree.tag].update(('@' + k, v) for k, v in tree.attrib.items())
+    if tree.text:
+        text = tree.text.strip()
+        if children or tree.attrib:
+            if text:
+                new_dict[tree.tag]['#text'] = text
+        else:
+            new_dict[tree.tag] = text
+    return new_dict
 
 
 def decode_xml(xml_str):
-    response = xml_str.replace('encoding="UTF-8"', '')
+    encoded = ET.XML(xml_str)
     try:
-        obj = objectify.fromstring(response)
-        encoded_obj = objectJSONEncoder().encode(obj)
-        return {"type": "json", "data": json.loads(encoded_obj)}
+        encoded_obj = etree_to_dict(encoded)
+        if 'ServiceResponse' in encoded_obj:
+            encoded_obj = encoded_obj['ServiceResponse']
+        return {"type": "json", "data": encoded_obj}
     except Exception as e:
-        logger.error(e.args)
+        logger.error(e)
         return {"type": "xml", "data": xml_str}
