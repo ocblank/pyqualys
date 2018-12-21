@@ -2,7 +2,7 @@
 import logging
 from .utils.connect import QualysAPI
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s \
