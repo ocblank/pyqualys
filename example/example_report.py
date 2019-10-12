@@ -8,10 +8,13 @@ obj = pyqualys.QualysAPI(username="admin",
 
 service = obj.service("vulnerability")
 
+# Lit out the all reports
 data = {'action': 'list'}
 report_list = service.report.list_report(**data)
 print(report_list)
 
+
+# Launch the scan report
 data = {
         'report_title': 'pyqualys report',
         'action': 'launch',
@@ -21,3 +24,9 @@ data = {
 }
 scan_report = service.report.scan_report(**data)
 print(scan_report)
+
+# Get report the scanner
+report = service.scanner.get_scan_report(echo_request=1,
+                               scan_ref="scan/1525944287.01369",
+                               output_format="json")
+print(report)
