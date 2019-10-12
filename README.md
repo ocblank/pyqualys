@@ -1,26 +1,20 @@
 # pyqualys
 
 
-pyqualys is simple, easy python client library for Qualys users.
+pyqualys is simple, easy to use Qualys services.
 
-Currently this is in working progress, but there are few features are work (Check TODO).
+Currently this pojrct is in working progress, but there are few features are done(Check TODO).
 
 Install
 -----------
 ```
-$ git clone https://github.com/Amitgb14/pyqualys.git
-$ cd pyqualys
-$ python setup.py install
-
-or
-
 $ pip install pyqualys
 ```
 
 
 Example
 -----------
-* Add Asset
+* Add Asset Group
 ```
 # -*- coding: utf-8 -*-
 import pyqualys
@@ -35,4 +29,3 @@ service.FORMAT = "json"
 asset = service.add_asset(title="myLinux", ips="10.10.10.1")
 print("Response", asset)
 ```
-More example in main.py and example/ dir
